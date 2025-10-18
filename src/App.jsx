@@ -1,3 +1,4 @@
+import LorePanel from "./components/LorePanel";
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import SessionPanel from './components/SessionPanel';
