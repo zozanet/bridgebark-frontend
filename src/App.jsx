@@ -29,10 +29,10 @@ export default function App() {
 
   // Start session and enable mining
   const handleSaveWallet = async () => {
-    await fetch(\`\${API_BASE}/api/session/start\`, {
+    await fetch(`${API_BASE}/api/session/start`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ wallet })
+      body: JSON.stringify({ wallet }),
     });
     setIsMining(true);
   };
@@ -42,10 +42,10 @@ export default function App() {
     let hb;
     if (isMining) {
       hb = setInterval(async () => {
-        const res = await fetch(\`\${API_BASE}/api/session/heartbeat\`, {
+        const res = await fetch(`${API_BASE}/api/session/heartbeat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ wallet })
+          body: JSON.stringify({ wallet }),
         });
         const { accrued } = await res.json();
         setBbp(accrued);
@@ -56,10 +56,10 @@ export default function App() {
 
   // Finish session and show final BBP
   const handleFinish = async () => {
-    const res = await fetch(\`\${API_BASE}/api/session/finish\`, {
+    const res = await fetch(`${API_BASE}/api/session/finish`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ wallet })
+      body: JSON.stringify({ wallet }),
     });
     const { finalBbp } = await res.json();
     setBbp(finalBbp);
