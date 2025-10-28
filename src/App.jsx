@@ -1,7 +1,8 @@
-import LorePanel from "./components/LorePanel";
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import SessionPanel from './components/SessionPanel';
+import LorePanel from './components/LorePanel';
+import './App.css';
 
 const API_BASE = 'https://unacclimatized-ivan-bookless.ngrok-free.dev';
 
@@ -19,7 +20,7 @@ export default function App() {
   const [boostEnabled, setBoostEnabled] = useState(false);
   const [loreIndex, setLoreIndex] = useState(0);
 
-  // Rotate lore every 10 seconds
+  // Rotate lore every 10s
   useEffect(() => {
     const id = setInterval(() => {
       setLoreIndex(i => (i + 1) % loreSnippets.length);
@@ -27,7 +28,7 @@ export default function App() {
     return () => clearInterval(id);
   }, []);
 
-  // Start session and enable mining
+  // Start session
   const handleSaveWallet = async () => {
     await fetch(`${API_BASE}/api/session/start`, {
       method: 'POST',
@@ -37,7 +38,7 @@ export default function App() {
     setIsMining(true);
   };
 
-  // Poll heartbeat every 2 seconds
+  // Heartbeat
   useEffect(() => {
     let hb;
     if (isMining) {
@@ -54,7 +55,7 @@ export default function App() {
     return () => clearInterval(hb);
   }, [isMining, wallet]);
 
-  // Finish session and show final BBP
+  // Finish session
   const handleFinish = async () => {
     const res = await fetch(`${API_BASE}/api/session/finish`, {
       method: 'POST',
@@ -67,13 +68,21 @@ export default function App() {
     setBoostEnabled(false);
   };
 
-  // Toggle booster locally (server logic is in session.js)
+  // Toggle booster
   const handleBoost = () => {
     setBoostEnabled(e => !e);
   };
 
   return (
-    <div className="container">
+    <div className="app">
+      {/* Mascot Panel */}
+      <header className="mascot-panel">
+        <img src="/mascot.png" alt="BridgeBark Mascot" className="mascot" />
+        <h1>BridgeBark</h1>
+        <p>Bark to Bridge. Mine to Moon.</p>
+      </header>
+
+      {/* Wallet + Session */}
       <Header wallet={wallet} onChange={setWallet} onSubmit={handleSaveWallet} />
       <SessionPanel
         bbp={bbp}
@@ -83,6 +92,8 @@ export default function App() {
         isMining={isMining}
         boostEnabled={boostEnabled}
       />
+
+      {/* Rotating Lore */}
       <LorePanel snippet={loreSnippets[loreIndex]} />
     </div>
   );

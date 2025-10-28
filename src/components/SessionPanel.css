@@ -1,0 +1,57 @@
+.session-panel {
+  padding: 20px;
+}
+
+.stats-panel {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.stat {
+  background: var(--bg-dark);
+  border: 2px solid var(--secondary-purple);
+  padding: 15px;
+  border-radius: var(--border-radius);
+  width: 30%;
+  box-shadow: 0 0 10px rgba(156, 39, 176, 0.6);
+}
+
+.stat h2 {
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: var(--primary-blue);
+}
+
+.stat p {
+  font-size: 14px;
+  margin: 0;
+  color: var(--text-light);
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.actions button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 5px;
+  padding: 10px 20px;
+  background: var(--accent-green);
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--bg-dark);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.actions button:hover {
+  background: #66BB6A;
+  transform: scale(1.05);
+}

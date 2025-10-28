@@ -1,0 +1,68 @@
+.header-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 20px;
+  flex-wrap: wrap; /* allows badge + button to wrap neatly on small screens */
+}
+
+/* Wallet input */
+.header-panel input {
+  padding: 10px;
+  border: 2px solid var(--primary-blue);
+  border-radius: var(--border-radius);
+  background: var(--bg-dark);
+  color: var(--text-light);
+  font-family: inherit;
+  width: 60%;
+  font-size: 12px;
+}
+
+.header-panel input::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Start Session button */
+.header-panel button {
+  padding: 10px 20px;
+  background: var(--secondary-purple);
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header-panel button:hover {
+  background: var(--primary-blue);
+  transform: scale(1.05);
+}
+
+/* Disabled button state */
+.disabled-btn {
+  padding: 10px 20px;
+  background: #444;
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-size: 12px;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* Connected badge */
+.wallet-display {
+  background: var(--bg-dark);
+  border: 2px solid var(--accent-green);
+  padding: 6px 10px;
+  border-radius: var(--border-radius);
+  font-size: 12px;
+  color: var(--text-light);
+}

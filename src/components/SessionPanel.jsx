@@ -1,4 +1,5 @@
 import React from 'react';
+import './SessionPanel.css';
 
 export default function SessionPanel({
   bbp,
@@ -6,21 +7,44 @@ export default function SessionPanel({
   onBoost,
   onFinish,
   isMining,
-  boostEnabled,
+  boostEnabled
 }) {
   return (
-    <section>
-      <p>BBP: {bbp}</p>
-      {!isMining ? (
-        <button onClick={onStart}>Start Mining</button>
-      ) : (
-        <>
-          <button onClick={onBoost}>
-            {boostEnabled ? 'Disable Boost' : 'Enable Boost'}
+    <div className="session-panel">
+      {/* Stats Section */}
+      <div className="stats-panel">
+        <div className="stat">
+          <h2>BBP Mined</h2>
+          <p>{bbp}</p>
+        </div>
+        <div className="stat">
+          <h2>Boost</h2>
+          <p>{boostEnabled ? '+25%' : 'Off'}</p>
+        </div>
+        <div className="stat">
+          <h2>Status</h2>
+          <p>{isMining ? 'Mining…' : 'Idle'}</p>
+        </div>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="actions">
+        {!isMining && (
+          <button onClick={onStart}>
+            🦴 Check In
           </button>
-          <button onClick={onFinish}>Finish</button>
-        </>
-      )}
-    </section>
+        )}
+        {isMining && (
+          <>
+            <button onClick={onBoost}>
+              ⚡ {boostEnabled ? 'Disable Boost' : 'Enable Boost'}
+            </button>
+            <button onClick={onFinish}>
+              🐾 Finish Session
+            </button>
+          </>
+        )}
+      </div>
+    </div>
   );
 }
