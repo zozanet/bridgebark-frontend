@@ -5,7 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: 'dist'
+    outDir: 'dist',   // output folder for production build
+    emptyOutDir: true // clears dist before each build
   },
-  base: './'   // ensures assets load correctly in Telegram Mini App
+  base: './'          // ensures assets load correctly on Vercel & Telegram Mini App
 })
