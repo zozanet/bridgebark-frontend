@@ -3,6 +3,28 @@ import Header from './components/Header';
 import SessionPanel from './components/SessionPanel';
 import LorePanel from './components/LorePanel';
 import './App.css';
+import { useSession } from "./hooks/useSession";
+
+export default function App() {
+  const { status, error, wallet, balance, mining, lastCheckIn, actions } = useSession();
+
+  if (status === "loading") return <div>Loading session…</div>;
+  if (status === "error") return <div>Error: {error}</div>;
+
+  return (
+    <div>
+      <h1>BridgeBark 🐾</h1>
+      <p>Wallet: {wallet}</p>
+      <p>Balance: {balance} BBP</p>
+      <p>Status: {mining ? "Mining" : "Not mining"}</p>
+
+      {!mining && <button onClick={actions.startMining}>Start Mining</button>}
+      <button onClick={actions.checkIn}>Check‑In</button>
+
+      {lastCheckIn && <p>Last check‑in: {new Date(lastCheckIn).toLocaleString()}</p>}
+    </div>
+  );
+}
 
 const API_BASE = 'https://unacclimatized-ivan-bookless.ngrok-free.dev';
 
